@@ -1,0 +1,40 @@
+name: 'movielens_dbt'
+version: '1.0.0'
+config-version: 2
+
+profile: 'movielens_dbt'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  movielens_dbt:
+    +materialized: seed
+
+models:
+  movielens_dbt:
+    staging:
+      +materialized: view
+    warehouse:
+      +materialized: iceberg_table
+      +database: dbt_movielens
+      +schema: movielens
+      +full_refresh: false
+
+snapshots:
+  movielens_dbt:
+    +target_database: dbt_movielens
+    +target_schema: movielens
+    +full_refresh: false
+
+vars:
+  iceberg_catalog: dbt_movielens
+  iceberg_warehouse_path: s3://ao-eng/movielens/warehouse

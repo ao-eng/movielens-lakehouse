@@ -1,0 +1,25 @@
+movielens_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ":memory:"
+      schema: main
+
+      extensions:
+        - httpfs
+        - aws
+        - iceberg
+
+      secrets:
+        - type: s3
+          provider: credential_chain
+          region: "{{ env_var('AWS_DEFAULT_REGION') }}"
+
+      attach:
+        - path: "{{ env_var('AWS_ACCOUNT_ID') }}"
+          alias: dbt_movielens
+          type: iceberg
+          options:
+            endpoint_type: glue
+            purge_requested: "false"

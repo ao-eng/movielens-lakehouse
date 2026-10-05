@@ -1,0 +1,34 @@
+.git
+.env
+.DS_Store
+airflow_settings.yaml
+__pycache__/
+astro
+.venv
+.astro/standalone/
+.astro/worktrees/
+airflow-webserver.pid
+webserver_config.py
+airflow.cfg
+airflow.db
+.astro/*.local.yml
+.astro/*.local.yaml
+
+**/.astro/dbt_metadata.json
+**/.astro/manifest.slim.json
+
+infra/terraform/.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Logs
+logs/
+
+# dbt artifacts
+dbt_movielens/logs/
+dbt_movielens/target/
+dbt_movielens/dbt_packages/
+dbt_movielens/.user.yml
+
+# Local scratch scripts
+101test.py

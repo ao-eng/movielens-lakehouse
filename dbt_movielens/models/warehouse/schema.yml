@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: dim_movies
+    description: "Dimension table for cleaned movie data"
+    columns:
+      - name: movie_id
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: movie_title
+        description: "The title of the movie"
+        data_tests:
+          - not_null
+      - name: genre_array
+        description: "An array of genres associated with the movie"
+      - name: genres
+        description: "A string of genres associated with the movie, separated by '|'"
+
+  - name: dim_users
+    description: "Dimension table for cleaned user data"
+    columns:
+      - name: user_id
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+  
+  - name: dim_genome_tags
+    description: "Dimension table for genome tags"
+    columns:
+      - name: tag_id
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+  
+  - name: fct_genome_scores
+    description: "Fact table for genome scores"
+    columns:
+      - name: movie_id
+        description: "Foreign key to dim_movies"
+        data_tests:
+          - not_null
+      - name: tag_id
+        description: "Foreign key to dim_genome_tags"
+        data_tests:
+          - not_null
+      - name: relevance
+        description: "Relevance score for the movie and tag combination"
+        data_tests:
+          - not_null
+          
+  - name: mart_ratings_monthly
+    description: "Ratings per month"
+    columns:
+      - name: rating_month 
+        data_tests:
+          - unique
+          - not_null

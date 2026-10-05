@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: raw_movielens
+    description: "Dados brutos do MovieLens salvos em Parquet no AWS S3"
+    tables:
+      - name: movies
+        description: "Catálogo de filmes e gêneros"
+        meta:
+          external_location: "s3://ao-eng/movielens/raw/movies/movies.parquet"
+
+      - name: ratings
+        description: "Avaliações dos usuários"
+        meta:
+          external_location: "s3://ao-eng/movielens/raw/ratings/ratings.parquet"
+
+      - name: tags
+        description: "Tags aplicadas aos filmes"
+        meta:
+          external_location: "s3://ao-eng/movielens/raw/tags/tags.parquet"
+
+      - name: links
+        description: "IDs do IMDb e TMDB"
+        meta:
+          external_location: "s3://ao-eng/movielens/raw/links/links.parquet"
+
+      - name: genome-scores
+        description: "scores"
+        meta:
+          external_location: "s3://ao-eng/movielens/raw/genome-scores/genome-scores.parquet"
+
+      - name: genome-tags
+        description: "tags"
+        meta:
+          external_location: "s3://ao-eng/movielens/raw/genome-tags/genome-tags.parquet"

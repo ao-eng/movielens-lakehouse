@@ -1,0 +1,98 @@
+
+version: 2
+
+models:
+  - name: stg_ratings
+    description: "ratings table"
+    columns:
+      - name: user_id
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: movie_id
+        description: "movie name"
+        data_tests:
+          - not_null
+      - name: rating
+        description: "rating for the movie"
+        data_tests:
+          - not_null
+      - name: rating_timestamp
+        description: "timestamp for the rating"
+        data_tests:
+          - not_null
+  - name: stg_tags
+    description: "tags table"
+    columns:
+      - name: user_id
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: movie_id
+        description: "movie name"
+        data_tests:
+          - not_null
+      - name: tag
+        description: "tags for the movie"
+        data_tests:
+          - not_null
+      - name: tag_timestamp
+        description: "timestamp for the tag"
+        data_tests:
+          - not_null
+  - name: stg_movies
+    description: "movies table"
+    columns:
+      - name: movieId
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+          - unique
+      - name: title
+        description: "movie name"
+        data_tests:
+          - not_null
+      - name: genres
+        description: "genres for the movie"
+        data_tests:
+          - not_null
+  - name: stg_links
+    description: "links table"
+    columns:
+      - name: movieId
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+          - unique
+      - name: imdbId
+        description: "imdb id for the movie"
+        data_tests:
+          - not_null
+      - name: tmdbId
+        description: "tmdb id for the movie"
+  - name: stg_genome-scores
+    description: "genome-scores table"
+    columns:
+      - name: movieId
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: tagId
+        description: "tag id for the movie"
+        data_tests:
+          - not_null
+      - name: relevance
+        description: "relevance for the tag"
+        data_tests:
+          - not_null
+  - name: stg_genome-tags
+    description: "genome-tags table"
+    columns:
+      - name: tagId
+        description: "tag id for the movie"
+        data_tests:
+          - not_null
+      - name: tag
+        description: "tag for the movie"
+        data_tests:
+          - not_null
